@@ -1,0 +1,35 @@
+# IPL - Input Planner List robots.txt
+# Optimized for search engines - IPL Planner App
+
+# Allow all bots
+User-agent: *
+Allow: /
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /.env
+
+# Faster crawling for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://ipl-planner.example.com/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Comments
+# This robots.txt allows search engines to freely crawl your website
+# Update domain placeholder with your actual domain

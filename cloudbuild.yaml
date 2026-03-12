@@ -1,0 +1,62 @@
+# Cloud Build configuration for Smart Daily Planner
+# This file enables automatic deployment from GitHub to Google Cloud
+
+# Build steps
+steps:
+  # Step 1: Display build information
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Building Smart Daily Planner..."
+        echo "Commit: $COMMIT_SHA"
+        echo "Branch: $BRANCH_NAME"
+
+  # Step 2: Copy files to Cloud Storage (if using Cloud Storage)
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'cp', '-r', '.', 'gs://${_BUCKET_NAME}/']
+    env:
+      - '_BUCKET_NAME=smart-planner-${PROJECT_ID}'
+
+  # Step 3: Invalidate CDN cache (optional)
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'compute'
+      - 'cdn-cache'
+      - 'invalidate'
+      - '${_CDN_NAME}'
+      - '--path=/*'
+    env:
+      - '_CDN_NAME=smart-planner-cdn'
+
+# Build options
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'N1_HIGHCPU_8'
+
+# Build timeout
+timeout: '1800s'
+
+# Environment variables
+substitutions:
+  _BUCKET_NAME: 'smart-planner-app'
+  _REGION: 'us-central1'
+  _SERVICE: 'smart-planner'
+
+# Images to be pushed
+images:
+  - 'gcr.io/$PROJECT_ID/${_SERVICE}:$SHORT_SHA'
+
+# Artifact storage
+artifacts:
+  objects:
+    location: 'gs://${_BUCKET_NAME}/builds'
+    paths:
+      - '**/*'
+
+# Tags for organization
+tags:
+  - 'gcp-cloud-build'
+  - '${_SERVICE}'
+  - '${BRANCH_NAME}'

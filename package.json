@@ -1,0 +1,38 @@
+{
+  "name": "smart-daily-planner",
+  "version": "1.0.0",
+  "description": "A comprehensive task management and productivity application",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000",
+    "dev": "npx http-server -p 8000 -o",
+    "build": "echo 'No build required - static files only'",
+    "test": "echo 'Tests not implemented yet'",
+    "deploy:gcloud": "gsutil -m cp -r . gs://your-project-id.appspot.com/",
+    "deploy:netlify": "netlify deploy --prod --dir .",
+    "serve": "npx serve"
+  },
+  "keywords": [
+    "planner",
+    "task-management",
+    "productivity",
+    "habit-tracker",
+    "pomodoro",
+    "daily-planner"
+  ],
+  "author": "Smart Planner Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "netlify-cli": "^13.0.0",
+    "serve": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/smart-planner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/smart-planner/issues"
+  },
+  "homepage": "https://github.com/yourusername/smart-planner#readme"
+}

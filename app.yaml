@@ -1,0 +1,64 @@
+runtime: nodejs20
+
+handlers:
+  # Serve static files with caching
+  - url: /styles\.css
+    static_files: styles.css
+    upload: styles.css
+    secure: always
+    http_headers:
+      Cache-Control: "public, max-age=3600"
+
+  - url: /app\.js
+    static_files: app.js
+    upload: app.js
+    secure: always
+    http_headers:
+      Cache-Control: "public, max-age=3600"
+
+  - url: /sw\.js
+    static_files: sw.js
+    upload: sw.js
+    secure: always
+    http_headers:
+      Cache-Control: "public, max-age=3600"
+
+  - url: /manifest\.json
+    static_files: manifest.json
+    upload: manifest.json
+    secure: always
+    http_headers:
+      Cache-Control: "public, max-age=3600"
+
+  - url: /.+
+    static_files: index.html
+    upload: index.html
+    secure: always
+    http_headers:
+      Cache-Control: "public, max-age=300"
+
+  # Default route
+  - url: /.*
+    static_files: index.html
+    upload: index.html
+    secure: always
+
+env: standard
+instance_class: F1
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+
+env_variables:
+  NODE_ENV: "production"
+  CACHE_CONTROL: "public, max-age=3600"
+
+skip_files:
+  - ^node_modules$
+  - ^\.git$
+  - ^\.env$
+  - ^README\.md$
+  - ^\.*
+
+cloud_sql_instances: []

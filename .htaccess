@@ -1,0 +1,89 @@
+# Enable gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript
+</IfModule>
+
+# Cache control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # HTML
+    ExpiresByType text/html "access plus 5 minutes"
+    
+    # Service Worker
+    ExpiresByType application/javascript "access plus 5 minutes"
+    
+    # Stylesheets
+    ExpiresByType text/css "access plus 1 year"
+    
+    # JavaScript
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Rewrite rules for single-page application
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Don't rewrite if it's an existing file or directory
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Rewrite all requests to index.html
+    RewriteRule ^(.*)$ index.html [L]
+</IfModule>
+
+# Remove ETags
+<IfModule mod_headers.c>
+    Header unset ETag
+    FileETag None
+</IfModule>
+
+# Deny access to hidden files
+<Files ".*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Allow critical files
+<Files ".well-known">
+    Allow from all
+</Files>
+
+# MIME types
+AddType application/manifest+json .webmanifest
+AddType application/x-web-app-manifest+json .webapp
+
+# Prevent access to config files
+<FilesMatch "\.(env|json|md|yaml|yml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow only specific files
+<FilesMatch "^(manifest|sitemap|robots)\..*$">
+    Allow from all
+</FilesMatch>
