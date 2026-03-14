@@ -7,8 +7,12 @@ Your website is now optimized for maximum search engine visibility. Here's what 
 ---
 
 ## ✅ On-Page SEO Optimizations
+## run command to view this Project in localhost:8080 is `python -m http.server 8080` and the website will be available at http://localhost:8080
 
+## Now I need to make this website as also SEO optimized for Google search engine. I want to rank #1 for the keyword "IPL" when people search for it on Google. Please provide a detailed SEO strategy that includes on-page SEO, technical SEO, and content optimization to achieve this goal. Also, explain how Google will find my website and what factors will help or hurt my ranking for the keyword "IPL".
 
+// Now I need to make this website as also mobile responsive and optimized for mobile search.
+And  the code for this website is 
 ### 1. **Keyword Optimization**
 - **Primary Keyword:** "IPL" (short, unique, memorable)
 - **Secondary Keywords:** 
