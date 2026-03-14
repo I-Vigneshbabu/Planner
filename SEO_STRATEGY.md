@@ -8,6 +8,7 @@ Your website is now optimized for maximum search engine visibility. Here's what 
 
 ## ✅ On-Page SEO Optimizations
 
+
 ### 1. **Keyword Optimization**
 - **Primary Keyword:** "IPL" (short, unique, memorable)
 - **Secondary Keywords:** 
