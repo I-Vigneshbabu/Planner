@@ -1,70 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-    
-    <!-- Homepage - IPL Planner Main Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://inputplannerlist.netlify.app/</loc>
-        <lastmod>2026-03-12</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2026-03-14</lastmod>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
-        <mobile:mobile/>
     </url>
-
-    <!-- Dashboard -->
     <url>
         <loc>https://inputplannerlist.netlify.app/dashboard</loc>
-        <lastmod>2026-03-12</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <mobile:mobile/>
+        <priority>0.8</priority>
     </url>
-
-    <!-- Weekly Planner -->
     <url>
         <loc>https://inputplannerlist.netlify.app/weekly</loc>
-        <lastmod>2026-03-12</lastmod>
-        <changefreq>daily</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
-        <mobile:mobile/>
     </url>
-
-    <!-- Habits Tracker -->
     <url>
         <loc>https://inputplannerlist.netlify.app/habits</loc>
-        <lastmod>2026-03-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
-        <mobile:mobile/>
     </url>
-
-    <!-- Pomodoro Timer -->
     <url>
         <loc>https://inputplannerlist.netlify.app/pomodoro</loc>
-        <lastmod>2026-03-12</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-        <mobile:mobile/>
-    </url>
-
-    <!-- Analytics -->
-    <url>
-        <loc>https://inputplannerlist.netlify.app/analytics</loc>
-        <lastmod>2026-03-12</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-        <mobile:mobile/>
-    </url>
-
-    <!-- Settings -->
-    <url>
-        <loc>https://inputplannerlist.netlify.app/settings</loc>
-        <lastmod>2026-03-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
-        <mobile:mobile/>
     </url>
-
+    <url>
+        <loc>https://inputplannerlist.netlify.app/analytics</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>

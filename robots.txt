@@ -13,18 +13,9 @@ User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Sitemap location
-Sitemap: https://inputplannerlist.netlify.app/sitemap.xml
-
-# Google
-User-agent: Googlebot
-Allow: /
-
 # Bing
 User-agent: Bingbot
 Allow: /
-
-# Crawl delay
 Crawl-delay: 1
 
 # Sitemap location
