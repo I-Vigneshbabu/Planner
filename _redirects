@@ -1,4 +1,1 @@
-# Force sitemap to act as a static file (prevents HTML fallback)
-/sitemap.xml /sitemap.xml 200
-
 /* /index.html 200
