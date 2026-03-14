@@ -14,7 +14,7 @@ Allow: /
 Crawl-delay: 0
 
 # Sitemap location
-Sitemap: https://ipl-planner.example.com/sitemap.xml
+Sitemap: https://inputplannerlist.netlify.app/sitemap.xml
 
 # Google
 User-agent: Googlebot
@@ -28,7 +28,7 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://inputplannerlist.netlify.app/sitemap.xml
 
 # Comments
 # This robots.txt allows search engines to freely crawl your website
