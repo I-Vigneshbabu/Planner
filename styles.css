@@ -1306,3 +1306,75 @@ input:checked + .slider:before {
         grid-template-columns: 1fr;
     }
 }
+
+/* SEO Landing Page Styles */
+.text-center {
+    text-align: center;
+}
+
+.hero-section.text-center {
+    padding: 4rem 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: var(--text-secondary);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.content-section {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-article {
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.feature-article:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.feature-image {
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    object-fit: cover;
+}
+
+.highlight-section {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 4rem auto;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    max-width: 800px;
+}
+
+.faq-section dt {
+    margin-top: 1.5rem;
+}
+
+.page-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
