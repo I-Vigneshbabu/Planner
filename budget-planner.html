@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Budget Planner Template - Monthly Income & Expense Tracker | IPL</title>
+    <meta name="description" content="Manage your finances with our free budget planner template. Track income, expenses, and savings goals to stay on top of your money.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://inputplannerlist.netlify.app/budget-planner">
+    <style>
+        body { background-color: #f9fafb; }
+        .planner-container { 
+            max-width: 800px; margin: 2rem auto; padding: 2.5rem; border: 1px solid #e2e8f0; 
+            border-radius: 16px; background: #fff; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1rem; }
+        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; margin: 0; }
+        .planner-section { margin-bottom: 2rem; background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .planner-section h3 { color: #334155; margin-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem; font-size: 1.2rem; font-weight: 600; }
+        .budget-row { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+        .budget-input { padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; background: #fff; transition: all 0.2s ease; }
+        .budget-input:focus { outline: none; border-color: #818cf8; }
+        .budget-label { flex: 2; }
+        .budget-amount { flex: 1; text-align: right; }
+        .total-row { display: flex; justify-content: space-between; font-weight: bold; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #cbd5e1; }
+        
+        .print-btn { 
+            display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; text-align: center;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        .print-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
+
+        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.8s; }
+        .planner-nav-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; transition: all 0.2s ease; }
+        .planner-nav-links a:hover { color: #fff; background: #6366f1; transform: translateY(-2px); }
+        .planner-nav-links strong { display: block; width: 100%; text-align: center; margin-bottom: 0.5rem; color: #1e293b; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media print {
+            .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links { display: none; }
+            .planner-container { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+            .budget-input { border: none; border-bottom: 1px solid #eee; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo">
+                    <h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1>
+                </div>
+                <!-- <div class="nav-menu"><a href="/" class="btn btn-primary">Open App</a></div> -->
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-section text-center" style="padding: 3rem 1rem 1rem;">
+            <h1>Free Budget Planner Template</h1>
+            <p class="hero-subtitle">Track your income and expenses to achieve your financial goals.</p>
+        </section>
+        <section class="content-section">
+            <div class="planner-container">
+                <div class="planner-header">
+                    <h2 class="planner-title">Monthly Budget</h2>
+                    <div>Month: <input type="text" placeholder="Month/Year" style="border:none; border-bottom:1px solid #94a3b8; width: 120px;"></div>
+                </div>
+
+                <div class="planner-section">
+                    <h3>Income Sources</h3>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" placeholder="Source 1"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" placeholder="Source 2"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="total-row"><span>Total Income</span><span>$________</span></div>
+                </div>
+
+                <div class="planner-section">
+                    <h3>Fixed Expenses</h3>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Rent / Mortgage"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Utilities"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Insurance"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Groceries"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                </div>
+
+                <div class="planner-section">
+                    <h3>Variable Expenses</h3>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Dining Out"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Entertainment"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Shopping"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                </div>
+
+                <div class="planner-section">
+                    <h3>Savings & Investments</h3>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Emergency Fund"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                    <div class="budget-row"><input type="text" class="budget-input budget-label" value="Investments"><input type="text" class="budget-input budget-amount" placeholder="$0.00"></div>
+                </div>
+
+                <div class="total-row" style="font-size: 1.2rem; color: #3b82f6;">
+                    <span>Net Balance (Income - Expenses)</span>
+                    <span>$________</span>
+                </div>
+
+                <button onclick="window.print()" class="print-btn">Print Budget Planner</button>
+            </div>
+            <div class="planner-nav-links">
+                <strong>Explore Other Free Planner Templates:</strong>
+                <a href="/daily-planner">Daily Planner</a>
+                <a href="/weekly-planner">Weekly Planner</a>
+                <a href="/study-planner">Study Planner</a>
+                <a href="/habit-tracker">Habit Tracker</a>
+                <a href="/goal-planner">Goal Planner</a>
+                <a href="/meal-planner">Meal Planner</a>
+                <a href="/budget-planner" style="background: #e2e8f0; color: #3b82f6;">Budget Planner</a>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <p>&copy; 2026 Input Planner List. All rights reserved.</p>
+        <p><a href="/">Home</a> | <a href="/daily-planner">Daily Planner</a> | <a href="/ipl">About</a></p>
+    </footer>
+</body>
+</html>

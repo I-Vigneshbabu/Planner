@@ -56,6 +56,29 @@ class IPLPlanner {
         // Navigation
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.addEventListener('click', (e) => this.switchView(e.target.dataset.view));
+            btn.addEventListener('click', (e) => {
+                const viewName = e.target.dataset.view;
+                if (viewName) { // Only switch view if data-view exists
+                    this.switchView(viewName);
+                }
+            });
+        });
+
+        // Templates Dropdown Logic
+        const dropdownButton = document.querySelector('.dropdown .nav-btn');
+        if (dropdownButton) {
+            dropdownButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevents the window click listener from closing it immediately
+                const dropdownContent = dropdownButton.nextElementSibling;
+                dropdownContent.classList.toggle('show');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content.show').forEach(dropdown => dropdown.classList.remove('show'));
+            }
         });
 
         // Dashboard

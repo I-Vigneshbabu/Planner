@@ -3,11 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Planner Dashboard 2026 - Input Planner List (IPL)</title>
-    <meta name="description" content="Maximize your productivity with Input Planner List (IPL)'s Daily Planner Dashboard 2026. Manage tasks, track habits, and boost your daily routine with our powerful digital planner.">
+    <title>Free Daily Planner Template - Organized Task List & Notes | IPL</title>
+    <meta name="description" content="Download or use our free daily planner template. Boost productivity with a prioritized task list, schedule tracker, and notes section. Simple and effective daily planning.">
     <!-- Stylesheet link (replace with your actual CSS file) -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="canonical" href="https://inputplannerlist.netlify.app/daily-planner.html">
+    <link rel="canonical" href="https://inputplannerlist.netlify.app/daily-planner">
+    <style>
+        /* Planner Template Specific Styles */
+        body { background-color: #f9fafb; }
+        .planner-container { 
+            max-width: 800px; 
+            margin: 2rem auto; 
+            padding: 2.5rem; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 16px; 
+            background: #fff; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .planner-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1rem; }
+        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; margin: 0; }
+        .planner-date { font-size: 1.1rem; color: #64748b; display: flex; align-items: center; gap: 0.5rem; }
+        .planner-section { margin-bottom: 2rem; }
+        .planner-section h3 { color: #334155; margin-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem; font-size: 1.2rem; font-weight: 600; }
+        .template-list { list-style: none; padding: 0; margin: 0; }
+        .template-item { display: flex; align-items: center; margin-bottom: 0.75rem; }
+        
+        /* Custom Checkbox */
+        .template-checkbox { 
+            appearance: none; width: 1.5rem; height: 1.5rem; margin-right: 1rem; 
+            border: 2px solid #cbd5e1; border-radius: 6px; cursor: pointer; position: relative;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #fff;
+        }
+        .template-checkbox:checked {
+            background-color: #10b981; border-color: #10b981; transform: scale(1.1);
+        }
+        .template-checkbox:checked::after {
+            content: '✓'; color: white; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); font-size: 1rem; font-weight: 800;
+        }
+        .template-checkbox:hover { border-color: #6366f1; }
+
+        /* Enhanced Inputs */
+        .template-input { flex: 1; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; background: #f8fafc; transition: all 0.3s ease; }
+        .template-input:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
+        .notes-area { width: 100%; height: 150px; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; resize: vertical; font-family: inherit; background: #f8fafc; transition: all 0.3s ease; }
+        .notes-area:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
+        
+        /* Colorful Button */
+        .print-btn { 
+            display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; 
+            text-align: center; text-decoration: none; font-size: 1.1rem; 
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        .print-btn:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); 
+        }
+
+        /* Internal Linking for SEO */
+        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.8s; }
+        .planner-nav-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; transition: all 0.2s ease; }
+        .planner-nav-links a:hover { color: #fff; background: #6366f1; transform: translateY(-2px); }
+        .planner-nav-links strong { display: block; width: 100%; text-align: center; margin-bottom: 0.5rem; color: #1e293b; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media print {
+            body { background: white; }
+            .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links { display: none; }
+            .planner-container { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+            .template-input, .notes-area { border: none; border-bottom: 1px solid #ccc; background: transparent; }
+            .template-checkbox { display: none; } /* Hide custom checkbox for printing */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,57 +96,72 @@
                     <h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1>
                 </div>
                 <div class="nav-menu">
-                    <a href="/" class="btn btn-primary">Open App</a>
+                    <!-- <a href="/" class="btn btn-primary">Open App</a> -->
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero-section text-center">
-            <h1>Daily Planner Dashboard 2026</h1>
-            <p class="hero-subtitle">Take control of your day with Input Planner List's intuitive Daily Planner Dashboard. Manage tasks, track habits, and optimize your schedule.</p>
-            <a href="/" class="btn btn-primary btn-large">Start Planning Today</a>
+        <section class="hero-section text-center" style="padding: 3rem 1rem 1rem;">
+            <h1>Free Daily Planner Template</h1>
+            <p class="hero-subtitle">Organize your day, prioritize tasks, and track your progress with this simple daily planner template.</p>
         </section>
 
         <section class="content-section">
-            <h2 class="text-center">Core Features</h2>
-
-            <article class="feature-article">
-                <div class="feature-text">
-                    <h3>Daily Planner Dashboard</h3>
-                    <p>Add, edit, delete, and manage tasks effortlessly. Stay organized and on top of your schedule with our intuitive dashboard.</p>
+            <!-- Planner Template -->
+            <div class="planner-container">
+                <div class="planner-header">
+                    <h2 class="planner-title">Daily Overview</h2>
+                    <div class="planner-date">
+                        Date: <input type="text" placeholder="MM/DD/YYYY" style="border:none; border-bottom:1px solid #94a3b8; width: 120px; font-family:inherit; color:#1e293b;">
+                    </div>
                 </div>
-                <img src="https://via.placeholder.com/300x200.png?text=Daily+Dashboard" alt="Daily Planner Dashboard" class="feature-image">
-            </article>
 
-            <article class="feature-article">
-                <div class="feature-text">
-                    <h3>Priority System</h3>
-                    <p>Organize tasks by High, Medium, or Low priority. Focus on what matters most and achieve your goals faster.</p>
+                <div class="planner-section">
+                    <h3>Top Priorities</h3>
+                    <ul class="template-list">
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Most important task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Second priority..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Third priority..."></li>
+                    </ul>
                 </div>
-                <img src="https://via.placeholder.com/300x200.png?text=Priority+System" alt="Priority System" class="feature-image">
-            </article>
 
-            <article class="feature-article">
-                <div class="feature-text">
-                    <h3>Weekly Planner</h3>
-                    <p>Drag-and-drop weekly view for easy scheduling. Plan your week ahead and maintain a clear overview of your commitments.</p>
+                <div class="planner-section">
+                    <h3>To-Do List</h3>
+                    <ul class="template-list">
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Task..."></li>
+                    </ul>
                 </div>
-                <img src="https://via.placeholder.com/300x200.png?text=Weekly+View" alt="Weekly Planner" class="feature-image">
-            </article>
 
-            <article class="feature-article">
-                <div class="feature-text">
-                    <h3>Habit Tracker</h3>
-                    <p>Track daily habits with streaks and progress. Build positive routines and achieve long-term success.</p>
+                <div class="planner-section">
+                    <h3>Notes & Ideas</h3>
+                    <textarea class="notes-area" placeholder="Jot down notes, reminders, or gratitude..."></textarea>
                 </div>
-                <img src="https://via.placeholder.com/300x200.png?text=Habit+Tracker" alt="Habit Tracker" class="feature-image">
-            </article>
+
+                <button onclick="window.print()" class="print-btn">Print Daily Planner</button>
+            </div>
+
+            <!-- Internal Links to Other Planners -->
+            <div class="planner-nav-links">
+                <strong>Explore Other Free Planner Templates:</strong>
+                <a href="/daily-planner" style="background: #e2e8f0; color: #3b82f6;">Daily Planner</a>
+                <a href="/weekly-planner">Weekly Planner</a>
+                <a href="/study-planner">Study Planner</a>
+                <a href="/habit-tracker">Habit Tracker</a>
+                <a href="/goal-planner">Goal Planner</a>
+                <a href="/meal-planner">Meal Planner</a>
+                <a href="/budget-planner">Budget Planner</a>
+            </div>
         </section>
 
         <section class="highlight-section">
-            <h3>Maximize Your Productivity with Our Daily Planner Dashboard</h3>
+            <h3>Why Use a Daily Planner?</h3>
             <p>
                 Effectively using a daily planner can significantly enhance your productivity and reduce stress.
                 With Input Planner List's <strong>Daily Planner Dashboard 2026</strong>, you can easily create a structured
@@ -83,8 +177,13 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2026 Input Planner List (IPL). All rights reserved.</p>
-        <p><a href="/">Home</a> | <a href="/daily-planner.html">Daily Planner</a> | <a href="/ipl.html">IPL Info</a></p>
+        <p>&copy; 2026 Input Planner List. All rights reserved.</p>
+        <p>
+            <a href="/">Home</a> |
+            <a href="/daily-planner">Daily Planner</a> |
+            <a href="/weekly-planner">Weekly Planner</a> |
+            <a href="/ipl">About</a>
+        </p>
     </footer>
 </body>
 </html>

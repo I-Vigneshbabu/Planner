@@ -4,8 +4,8 @@
   "description": "A comprehensive task management and productivity application",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000 || python -m SimpleHTTPServer 8000",
-    "dev": "npx http-server -p 8000 -o",
+    "start": "python server.py",
+    "dev": "python server.py",
     "build": "echo 'No build required - static files only'",
     "test": "echo 'Tests not implemented yet'",
     "deploy:gcloud": "gsutil -m cp -r . gs://your-project-id.appspot.com/",

@@ -1,12 +1,22 @@
 // Service Worker for IPL - Input Planner List
 // Enables offline functionality and caching
 
-const CACHE_NAME = 'planner-v1';
+// Increment the cache version when you update the app shell.
+const CACHE_NAME = 'planner-v3';
 const urlsToCache = [
     '/',
     '/index.html',
+    '/daily-planner',
+    '/weekly-planner',
+    '/study-planner',
+    '/habit-tracker',
+    '/goal-planner',
+    '/meal-planner',
+    '/budget-planner',
+    '/ipl',
     '/styles.css',
     '/app.js',
+    // It's good practice to cache your main icon/logo
     'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="75" font-size="80" text-anchor="middle">📋</text></svg>'
 ];
 

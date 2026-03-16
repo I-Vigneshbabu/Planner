@@ -27,7 +27,7 @@
         "@type": "SoftwareApplication",
         "name": "IPL - Input Planner List",
         "alternateName": "Input Planner List",
-        "description": "IPL is a comprehensive task management and productivity planner with habit tracking, Pomodoro timer, and advanced analytics. Best planner app for organizing tasks and boosting productivity.",
+        "description": "Input Planner List (IPL) is a comprehensive task management and productivity planner with habit tracking, Pomodoro timer, and advanced analytics. Best planner app for organizing tasks and boosting productivity.",
         "url": "https://ipl-planner.example.com",
         "applicationCategory": "ProductivityApplication",
         "offers": {
@@ -97,11 +97,27 @@
                 </div>
                 <div class="nav-menu">
                     <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+                      <!-- Templates Dropdown -->
+                    <div class="dropdown">
+                        <button class="nav-btn">Templates ▾</button>
+                        <div class="dropdown-content">
+                            <a href="/daily-planner">Daily Planner</a>
+                            <a href="/weekly-planner">Weekly Planner</a>
+                            <a href="/study-planner">Study Planner</a>
+                            <a href="/habit-tracker">Habit Tracker</a>
+                            <a href="/goal-planner">Goal Planner</a>
+                            <a href="/meal-planner">Meal Planner</a>
+                            <a href="/budget-planner">Budget Planner</a>
+                        </div>
+                    </div>
+
+                    
                     <button class="nav-btn" data-view="weekly">Weekly</button>
                     <button class="nav-btn" data-view="habits">Habits</button>
                     <button class="nav-btn" data-view="pomodoro">Pomodoro</button>
                     <button class="nav-btn" data-view="analytics">Analytics</button>
-                    <button class="nav-btn settings-btn" data-view="settings">⚙️</button>
+                    
+                    <button class="nav-btn settings-btn" data-view="settings">Settings</button>
                 </div>
             </div>
         </nav>
@@ -123,7 +139,7 @@
                         </div>
                         <div class="stat">
                             <span class="stat-number" id="streakCount">0</span>
-                            <span class="stat-label">Streak 🔥</span>
+                            <span class="stat-label">Streak</span>
                         </div>
                     </div>
                 </div>
@@ -156,7 +172,6 @@
                 <!-- Tasks List -->
                 <div id="tasksList" class="tasks-container">
                     <div class="empty-state">
-                        <span class="empty-icon">✨</span>
                         <p>No tasks yet. Add one to get started!</p>
                     </div>
                 </div>
@@ -188,7 +203,6 @@
                 </div>
                 <div id="habitsList" class="habits-container">
                     <div class="empty-state">
-                        <span class="empty-icon">🎯</span>
                         <p>No habits yet. Create one to start tracking!</p>
                     </div>
                 </div>
@@ -312,10 +326,10 @@
                         <!-- Export & Backup -->
                         <div class="settings-card">
                             <h3>Data Export</h3>
-                            <button id="exportPdf" class="btn btn-secondary full-width">📄 Export as PDF</button>
-                            <button id="exportCsv" class="btn btn-secondary full-width">📊 Export as CSV</button>
-                            <button id="downloadData" class="btn btn-secondary full-width">💾 Download Data (JSON)</button>
-                            <button id="importData" class="btn btn-secondary full-width">📥 Import Data</button>
+                            <button id="exportPdf" class="btn btn-secondary full-width">Export as PDF</button>
+                            <button id="exportCsv" class="btn btn-secondary full-width">Export as CSV</button>
+                            <button id="downloadData" class="btn btn-secondary full-width">Download Data (JSON)</button>
+                            <button id="importData" class="btn btn-secondary full-width">Import Data</button>
                             <input type="file" id="importInput" accept=".json" style="display:none;">
                         </div>
 
@@ -326,21 +340,35 @@
                                 <p>Used: <span id="storageUsed">--</span></p>
                                 <p>Status: <span id="storageStatus">Ready</span></p>
                             </div>
-                            <button id="clearData" class="btn btn-danger full-width">🗑️ Clear All Data</button>
+                            <button id="clearData" class="btn btn-danger full-width">Clear All Data</button>
                         </div>
 
                         <!-- About -->
                         <div class="settings-card">
                             <h3>About</h3>
-                            <p>IPL - Input Planner List v1.0</p>
+                            <p>Input Planner List v1.0</p>
                             <p>A comprehensive task management and productivity tool.</p>
-                            <p><a href="/ipl.html" target="_blank" rel="noopener">What is IPL?</a></p>
-                            <p><small>© 2026 IPL Planner. All rights reserved.</small></p>
+                            <p><a href="/ipl" target="_blank" rel="noopener">What is Input Planner List?</a></p>
+                            <p><small>© 2026 Input Planner List. All rights reserved.</small></p>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
+
+        <section class="templates-links" style="padding: 2rem; background: #f8fafc; text-align: center;">
+            <h3>Free Planner Templates</h3>
+            <p>Browse our collection of printable templates:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                <a href="/daily-planner" class="btn">Daily Planner</a>
+                <a href="/weekly-planner" class="btn">Weekly Planner</a>
+                <a href="/study-planner" class="btn">Study Planner</a>
+                <a href="/habit-tracker" class="btn">Habit Tracker</a>
+                <a href="/goal-planner" class="btn">Goal Planner</a>
+                <a href="/meal-planner" class="btn">Meal Planner</a>
+                <a href="/budget-planner" class="btn">Budget Planner</a>
+            </div>
+        </section>
 
         <!-- Task Detail Modal -->
         <div id="taskModal" class="modal">
