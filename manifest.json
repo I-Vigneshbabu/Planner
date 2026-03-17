@@ -1,7 +1,7 @@
 {
-  "name": "IPL - Input Planner List",
-  "short_name": "IPL",
-  "description": "IPL (Input Planner List): Organize tasks, track habits, and boost productivity with an intelligent daily planner",
+  "name": "Input Planner List",
+  "short_name": "Planner",
+  "description": "Input Planner List: Organize tasks, track habits, and boost productivity with an intelligent daily planner",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

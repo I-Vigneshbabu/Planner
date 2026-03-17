@@ -3,125 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Study Planner Template - Track Assignments & Exams | IPL</title>
-    <meta name="description" content="Ace your exams with our free study planner template. Organize subjects, track homework, and schedule study sessions effectively.">
+    <title>Free Study Planner Template - Student Schedule & Goals | Input Planner List</title>
+    <meta name="description" content="Ace your exams with this free study planner template. Track assignments, schedule study blocks, and manage academic goals.">
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://inputplannerlist.netlify.app/study-planner">
     <style>
         body { background-color: #f9fafb; }
-        .planner-container { 
-            max-width: 800px; margin: 2rem auto; padding: 2.5rem; border: 1px solid #e2e8f0; 
-            border-radius: 16px; background: #fff; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            animation: fadeInUp 0.5s ease-out;
-        }
-        .planner-container:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-        .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1rem; }
-        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; margin: 0; }
-        .planner-date { font-size: 1.1rem; color: #64748b; }
+        .planner-container { max-width: 800px; margin: 2rem auto; padding: 2.5rem; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); animation: fadeInUp 0.5s ease-out; }
+        .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #8b5cf6; padding-bottom: 1rem; }
+        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; }
         .planner-section { margin-bottom: 2rem; }
-        .planner-section h3 { color: #334155; margin-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem; font-size: 1.2rem; font-weight: 600; }
-        .template-list { list-style: none; padding: 0; margin: 0; }
-        .template-item { display: flex; align-items: center; margin-bottom: 0.75rem; }
-
-        /* Custom Checkbox */
-        .template-checkbox { 
-            appearance: none; width: 1.5rem; height: 1.5rem; margin-right: 1rem; 
-            border: 2px solid #cbd5e1; border-radius: 6px; cursor: pointer; position: relative;
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #fff;
-        }
-        .template-checkbox:checked { background-color: #10b981; border-color: #10b981; transform: scale(1.1); }
-        .template-checkbox:checked::after { content: '✓'; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1rem; font-weight: 800; }
-        .template-checkbox:hover { border-color: #6366f1; }
-
-        /* Enhanced Inputs */
-        .template-input { flex: 1; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; background: #f8fafc; transition: all 0.3s ease; }
-        .template-input:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
-        .notes-area { width: 100%; height: 120px; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; resize: vertical; background: #f8fafc; transition: all 0.3s ease; }
-        .notes-area:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
-
-        .print-btn { 
-            display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; 
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
-            color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; text-align: center;
-            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        }
-        .print-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
-
-        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.8s; }
-        .planner-nav-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; transition: all 0.2s ease; }
-        .planner-nav-links a:hover { color: #fff; background: #6366f1; transform: translateY(-2px); }
-        .planner-nav-links strong { display: block; width: 100%; text-align: center; margin-bottom: 0.5rem; color: #1e293b; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .planner-section h3 { color: #5b21b6; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        
+        .table-row { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+        .input-time { width: 100px; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .input-subject { flex: 1; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .input-task { flex: 2; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .checkbox-done { width: 24px; height: 24px; cursor: pointer; }
+        
+        .print-btn { display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: transform 0.3s; }
+        .print-btn:hover { transform: translateY(-3px); }
+        
+        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; }
+        .planner-nav-links a { color: #64748b; text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; }
+        .planner-nav-links a:hover { background: #6366f1; color: white; transform: translateY(-2px); }
 
         @media print {
+            body { background: white; }
             .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links { display: none; }
-            .planner-container { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
-            .template-input, .notes-area { border: none; border-bottom: 1px solid #ccc; background: transparent; }
-            .template-checkbox { display: none; }
+            .planner-container { box-shadow: none; border: none; padding: 0; }
+            .input-time, .input-subject, .input-task { border: none; border-bottom: 1px solid #ccc; }
         }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="logo">
-                    <h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1>
-                </div>
-                <!-- <div class="nav-menu"><a href="/" class="btn btn-primary">Open App</a></div> -->
-            </div>
-        </nav>
-    </header>
+    <header><nav class="navbar"><div class="navbar-container"><div class="logo"><h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1></div></div></nav></header>
     <main>
         <section class="hero-section text-center" style="padding: 3rem 1rem 1rem;">
             <h1>Free Study Planner Template</h1>
-            <p class="hero-subtitle">Organize subjects, track assignments, and prepare for exams effectively.</p>
+            <p class="hero-subtitle">Focus, organize, and achieve your academic goals.</p>
         </section>
+
         <section class="content-section">
             <div class="planner-container">
                 <div class="planner-header">
-                    <h2 class="planner-title">Study Session</h2>
-                    <div class="planner-date">Date: <input type="text" placeholder="MM/DD/YYYY" style="border:none; border-bottom:1px solid #94a3b8; width: 120px;"></div>
+                    <h2 class="planner-title">Daily Study Plan</h2>
+                    <div style="color: #64748b;">Date: <input type="text" placeholder="MM/DD/YYYY" style="border:none; border-bottom:1px solid #94a3b8; width: 120px; color: #64748b;"></div>
                 </div>
+
                 <div class="planner-section">
-                    <h3>Subjects to Study</h3>
-                    <ul class="template-list">
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Subject 1: Topic..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Subject 2: Topic..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Subject 3: Topic..."></li>
-                    </ul>
+                    <h3>🎯 Today's Top Study Goals</h3>
+                    <div class="table-row"><input type="checkbox" class="checkbox-done"><input type="text" class="input-task" placeholder="Goal 1..."></div>
+                    <div class="table-row"><input type="checkbox" class="checkbox-done"><input type="text" class="input-task" placeholder="Goal 2..."></div>
+                    <div class="table-row"><input type="checkbox" class="checkbox-done"><input type="text" class="input-task" placeholder="Goal 3..."></div>
                 </div>
+
                 <div class="planner-section">
-                    <h3>Key Goals for Today</h3>
-                    <ul class="template-list">
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Goal 1..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Goal 2..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Goal 3..."></li>
-                    </ul>
+                    <h3>📚 Study Schedule & Time Blocking</h3>
+                    <div class="table-row">
+                        <input type="text" class="input-time" placeholder="Time">
+                        <input type="text" class="input-subject" placeholder="Subject">
+                        <input type="text" class="input-task" placeholder="Topic / Task">
+                    </div>
+                    <div class="table-row"><input type="text" class="input-time"><input type="text" class="input-subject"><input type="text" class="input-task"></div>
+                    <div class="table-row"><input type="text" class="input-time"><input type="text" class="input-subject"><input type="text" class="input-task"></div>
+                    <div class="table-row"><input type="text" class="input-time"><input type="text" class="input-subject"><input type="text" class="input-task"></div>
+                    <div class="table-row"><input type="text" class="input-time"><input type="text" class="input-subject"><input type="text" class="input-task"></div>
                 </div>
+
                 <div class="planner-section">
-                    <h3>Assignments / Homework</h3>
-                    <ul class="template-list">
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Assignment due..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Assignment due..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Assignment due..."></li>
-                    </ul>
+                    <h3>📝 Assignments & Deadlines</h3>
+                    <div class="table-row">
+                        <input type="text" class="input-subject" placeholder="Subject">
+                        <input type="text" class="input-task" placeholder="Assignment">
+                        <input type="text" class="input-time" placeholder="Due Date">
+                    </div>
+                    <div class="table-row"><input type="text" class="input-subject"><input type="text" class="input-task"><input type="text" class="input-time"></div>
                 </div>
-                <div class="planner-section">
-                    <h3>Notes & Formulas</h3>
-                    <textarea class="notes-area" placeholder="Important concepts to remember..."></textarea>
-                </div>
+
                 <button onclick="window.print()" class="print-btn">Print Study Planner</button>
             </div>
+
+            <section class="highlight-section">
+                <h3>Why Use a Study Planner?</h3>
+                <p>
+                    A dedicated study planner is key to academic success. It helps you manage assignments, schedule revision blocks, and track exam dates. With Input Planner List's <strong>Habit Tracker and Pomodoro Timer</strong>, you can build consistent study habits and stay focused during sessions.
+                </p>
+            </section>
+    
+            <section class="content-section text-center">
+                <h3>Ready to Boost Your Grades?</h3>
+                <p style="margin-bottom: 2rem;">Combine this template with the power of the Input Planner List app for ultimate academic organization!</p>
+                <a href="/" class="btn btn-primary btn-large">Try Input Planner List Now</a>
+            </section>
+
             <div class="planner-nav-links">
                 <strong>Explore Other Free Planner Templates:</strong>
                 <a href="/daily-planner">Daily Planner</a>
                 <a href="/weekly-planner">Weekly Planner</a>
-                <a href="/study-planner" style="background: #e2e8f0; color: #3b82f6;">Study Planner</a>
+                <a href="/study-planner" style="background: #e2e8f0; color: #8b5cf6;">Study Planner</a>
                 <a href="/habit-tracker">Habit Tracker</a>
                 <a href="/goal-planner">Goal Planner</a>
                 <a href="/meal-planner">Meal Planner</a>
@@ -129,9 +110,6 @@
             </div>
         </section>
     </main>
-    <footer class="page-footer">
-        <p>&copy; 2026 Input Planner List. All rights reserved.</p>
-        <p><a href="/">Home</a> | <a href="/daily-planner">Daily Planner</a> | <a href="/ipl">About</a></p>
-    </footer>
+    <footer class="page-footer"><p>&copy; 2026 Input Planner List.</p></footer>
 </body>
 </html>

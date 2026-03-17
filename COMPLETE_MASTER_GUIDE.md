@@ -1,4 +1,4 @@
-# 🚀 ULTIMATE DEPLOYMENT GUIDE: Deploy IPL App Live (Complete A-Z)
+# 🚀 ULTIMATE DEPLOYMENT GUIDE: Deploy Input Planner List App Live (Complete A-Z)
 
 **Your Journey:** Code on Computer → GitHub → Netlify → Google Search → Getting Traffic → Earning Money!
 
@@ -181,7 +181,7 @@ my-ipl-builder
 ## Step 2: Create GitHub Repository
 
 ### **What is a Repository?**
-A folder in the cloud where your IPL app code will live. Think of it like Google Drive, but for code.
+A folder in the cloud where your Input Planner List app code will live. Think of it like Google Drive, but for code.
 
 ### **Navigate to New Repository Page**
 
@@ -1667,4 +1667,3 @@ https://search.google.com/search-console/welcome?utm_medium=referral
 **Your app is now on the world wide web!** 🚀
 
 **Congratulations!** You've completed a full deployment pipeline that most developers take weeks to learn!
-

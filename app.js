@@ -1,7 +1,7 @@
-// IPL - Input Planner List - Main Application
+// Input Planner List - Main Application
 // This is a comprehensive task management and productivity tool
 
-class IPLPlanner {
+class Planner {
     constructor() {
         this.tasks = [];
         this.habits = [];
@@ -13,6 +13,7 @@ class IPLPlanner {
         this.currentTime = 25 * 60; // 25 minutes in seconds
         this.isWorkSession = true;
         this.completedToday = 0;
+        this.weeklyData = {}; // Store goals, priorities, notes by week
         
         this.initializeDB();
         this.loadData();
@@ -36,6 +37,7 @@ class IPLPlanner {
             this.tasks = data.tasks || [];
             this.habits = data.habits || [];
             this.sessions = data.sessions || [];
+            this.weeklyData = data.weeklyData || {};
         }
         this.saveData();
     }
@@ -45,6 +47,7 @@ class IPLPlanner {
             tasks: this.tasks,
             habits: this.habits,
             sessions: this.sessions,
+            weeklyData: this.weeklyData,
             lastSaved: new Date().toISOString()
         };
         localStorage.setItem('plannerData', JSON.stringify(data));
@@ -96,6 +99,19 @@ class IPLPlanner {
         // Weekly
         document.getElementById('prevWeek')?.addEventListener('click', () => this.previousWeek());
         document.getElementById('nextWeek')?.addEventListener('click', () => this.nextWeek());
+        document.getElementById('newGoalInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.addWeeklyItem('goals', e.target.value);
+        });
+        document.getElementById('newPriorityInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.addWeeklyItem('priorities', e.target.value);
+        });
+        document.getElementById('weeklyNotes')?.addEventListener('input', (e) => {
+            this.saveWeeklyNote(e.target.value);
+        });
+        document.getElementById('moodSelector')?.addEventListener('click', (e) => {
+            if(e.target.tagName === 'SPAN') this.setWeeklyMood(e.target.dataset.mood);
+        });
+        document.getElementById('resetWeekBtn')?.addEventListener('click', () => this.resetWeeklyData());
 
         // Habits
         document.getElementById('addHabitBtn')?.addEventListener('click', () => this.addHabit());
@@ -484,12 +500,16 @@ class IPLPlanner {
 
     // Weekly Planner
     renderWeekly() {
-        this.updateWeekDisplay();
-        const container = document.getElementById('weeklyGrid');
+        const container = document.getElementById('weeklyDaysGrid');
         if (!container) return;
+        
+        this.updateWeekDisplay();
+        this.renderWeeklyWidgets(); // Render sidebar items
 
         const days = [];
         const start = new Date(this.currentWeekStart);
+        // Colors for day borders
+        const borderColors = ['#ff9999', '#ffcc99', '#ffff99', '#99ff99', '#99ffff', '#9999ff', '#ff99ff'];
 
         for (let i = 0; i < 7; i++) {
             const date = new Date(start);
@@ -500,30 +520,184 @@ class IPLPlanner {
         container.innerHTML = days.map(date => {
             const dateStr = date.toISOString().split('T')[0];
             const dayTasks = this.tasks.filter(t => t.date === dateStr);
+            const dayIndex = date.getDay() === 0 ? 6 : date.getDay() - 1; // Mon=0, Sun=6
             
             return `
-                <div class="day-card">
-                    <div class="day-header">
-                        ${date.toLocaleDateString('en-US', { weekday: 'short' })}
-                        <br>
-                        ${date.getDate()}
+                <div class="day-card" style="border-top: 5px solid ${borderColors[dayIndex]}">
+                    <div class="day-card-header">
+                        <h3>${date.toLocaleDateString('en-US', { weekday: 'long' })}</h3>
+                        <span style="color:var(--text-secondary)">${date.getDate()}</span>
                     </div>
-                    <div class="day-tasks">
+                    <ul class="day-card-task-list">
                         ${dayTasks.map(task => `
-                            <div class="day-task ${task.completed ? 'completed' : ''}" draggable="true">
-                                <input 
-                                    type="checkbox" 
-                                    ${task.completed ? 'checked' : ''}
-                                    onchange="planner.toggleTask(${task.id})"
-                                    style="margin-right: 0.5rem;"
-                                >
-                                <span>${this.escapeHtml(task.name)}</span>
-                            </div>
+                            <li style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.5rem; text-decoration: ${task.completed ? 'line-through' : 'none'}; opacity: ${task.completed ? 0.6 : 1}">
+                                <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="planner.toggleTask(${task.id})">
+                                <span onclick="planner.editTask(${task.id})" style="cursor:pointer; font-size:0.9rem">${this.escapeHtml(task.name)}</span>
+                            </li>
                         `).join('')}
+                    </ul>
+                    <div class="day-input-area">
+                        <input type="text" placeholder="+ Add task" onkeypress="if(event.key === 'Enter') planner.addTaskToDate(this, '${dateStr}')">
                     </div>
                 </div>
             `;
         }).join('');
+        
+        this.updateWeeklyProgress();
+    }
+
+    // Helper to get current week's data key
+    getCurrentWeekKey() {
+        return this.currentWeekStart.toISOString().split('T')[0];
+    }
+
+    // Specific method to add task to a specific date from Weekly view
+    addTaskToDate(inputElement, dateStr) {
+        const taskName = inputElement.value.trim();
+        if (!taskName) return;
+
+        const task = {
+            id: Date.now(),
+            name: taskName,
+            description: '',
+            priority: 'Medium',
+            completed: false,
+            date: dateStr,
+            tags: [],
+            createdAt: new Date().toISOString()
+        };
+
+        this.tasks.push(task);
+        this.saveData();
+        inputElement.value = ''; // Clear input
+        this.renderWeekly(); // Re-render to show new task
+        this.showNotification('Task added', 'success');
+    }
+
+    // Widgets Logic (Goals, Priorities, Mood)
+    renderWeeklyWidgets() {
+        const key = this.getCurrentWeekKey();
+        const data = this.weeklyData[key] || { goals: [], priorities: [], mood: null, notes: '' };
+
+        // Render Goals
+        const goalsList = document.getElementById('weeklyGoalsList');
+        if(goalsList) {
+            goalsList.innerHTML = data.goals.map((goal, index) => `
+                <li style="margin-bottom:0.5rem; display:flex; gap:0.5rem;">
+                    <input type="checkbox" ${goal.completed ? 'checked' : ''} onchange="planner.toggleWeeklyItem('goals', ${index})">
+                    <span style="${goal.completed ? 'text-decoration:line-through;color:#aaa' : ''}">${this.escapeHtml(goal.text)}</span>
+                    <i class="fa-solid fa-xmark" style="cursor:pointer; color:#ff9999; margin-left:auto" onclick="planner.deleteWeeklyItem('goals', ${index})"></i>
+                </li>
+            `).join('');
+        }
+
+        // Render Priorities
+        const prioList = document.getElementById('weeklyPrioritiesList');
+        if(prioList) {
+            prioList.innerHTML = data.priorities.map((prio, index) => `
+                <li style="margin-bottom:0.5rem; display:flex; gap:0.5rem;">
+                    <span>${index + 1}. ${this.escapeHtml(prio.text)}</span>
+                    <i class="fa-solid fa-xmark" style="cursor:pointer; color:#ff9999; margin-left:auto" onclick="planner.deleteWeeklyItem('priorities', ${index})"></i>
+                </li>
+            `).join('');
+        }
+
+        // Render Mood
+        const moodDisplay = document.getElementById('currentMoodDisplay');
+        if(moodDisplay && data.mood) {
+            const moodMap = { great: '🤩 Great', good: '🙂 Good', okay: '😐 Okay', tired: '😴 Tired', bad: '😖 Bad' };
+            moodDisplay.textContent = `Current mood: ${moodMap[data.mood]}`;
+        } else if(moodDisplay) {
+            moodDisplay.textContent = '';
+        }
+
+        // Render Notes
+        const notesArea = document.getElementById('weeklyNotes');
+        if(notesArea) {
+            notesArea.value = data.notes || '';
+        }
+    }
+
+    addWeeklyItem(type, text) {
+        const key = this.getCurrentWeekKey();
+        if (!this.weeklyData[key]) this.weeklyData[key] = { goals: [], priorities: [], mood: null, notes: '' };
+        
+        if(!text.trim()) return;
+        
+        if(type === 'goals') {
+            this.weeklyData[key].goals.push({ text: text, completed: false });
+            document.getElementById('newGoalInput').value = '';
+        } else if (type === 'priorities') {
+            this.weeklyData[key].priorities.push({ text: text });
+            document.getElementById('newPriorityInput').value = '';
+        }
+        
+        this.saveData();
+        this.renderWeeklyWidgets();
+    }
+
+    deleteWeeklyItem(type, index) {
+        const key = this.getCurrentWeekKey();
+        if(this.weeklyData[key] && this.weeklyData[key][type]) {
+            this.weeklyData[key][type].splice(index, 1);
+            this.saveData();
+            this.renderWeeklyWidgets();
+        }
+    }
+
+    toggleWeeklyItem(type, index) {
+        const key = this.getCurrentWeekKey();
+        if(this.weeklyData[key] && this.weeklyData[key][type]) {
+            this.weeklyData[key][type][index].completed = !this.weeklyData[key][type][index].completed;
+            this.saveData();
+            this.renderWeeklyWidgets();
+        }
+    }
+
+    saveWeeklyNote(text) {
+        const key = this.getCurrentWeekKey();
+        if (!this.weeklyData[key]) this.weeklyData[key] = { goals: [], priorities: [], mood: null, notes: '' };
+        this.weeklyData[key].notes = text;
+        this.saveData();
+    }
+
+    setWeeklyMood(mood) {
+        const key = this.getCurrentWeekKey();
+        if (!this.weeklyData[key]) this.weeklyData[key] = { goals: [], priorities: [], mood: null, notes: '' };
+        this.weeklyData[key].mood = mood;
+        this.saveData();
+        this.renderWeeklyWidgets();
+    }
+
+    resetWeeklyData() {
+        if(confirm('Reset all goals, priorities, and notes for this week?')) {
+            const key = this.getCurrentWeekKey();
+            delete this.weeklyData[key];
+            this.saveData();
+            this.renderWeekly();
+        }
+    }
+
+    updateWeeklyProgress() {
+        // Calculate progress based on tasks for the week
+        const start = new Date(this.currentWeekStart);
+        const end = new Date(start);
+        end.setDate(end.getDate() + 6);
+        
+        const weekTasks = this.tasks.filter(t => {
+            const tDate = new Date(t.date);
+            return tDate >= start && tDate <= end;
+        });
+
+        const total = weekTasks.length;
+        const completed = weekTasks.filter(t => t.completed).length;
+        const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+        const bar = document.getElementById('weeklyProgressBar');
+        const text = document.getElementById('weeklyProgressText');
+        
+        if(bar) bar.style.width = `${percent}%`;
+        if(text) text.textContent = `${completed}/${total} tasks (${percent}%)`;
     }
 
     previousWeek() {
@@ -956,7 +1130,7 @@ class IPLPlanner {
 // Initialize the application
 let planner;
 document.addEventListener('DOMContentLoaded', () => {
-    planner = new IPLPlanner();
+    planner = new Planner();
     
     // Mobile menu optimization
     if (window.innerWidth <= 768) {

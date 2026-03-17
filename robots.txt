@@ -1,5 +1,5 @@
-# IPL - Input Planner List robots.txt
-# Optimized for search engines - IPL Planner App
+# Input Planner List robots.txt
+# Optimized for search engines - Input Planner List App
 
 # Allow all bots
 User-agent: *

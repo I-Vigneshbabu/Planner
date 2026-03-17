@@ -3,226 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Goal Planner Template - Set & Achieve SMART Goals | IPL</title>
-    <meta name="description" content="Turn your dreams into reality with our free goal planner. Define your objectives, break them down into actionable steps, and track progress.">
+    <title>Free Goal Planner Template - Action Plan & Milestones | Input Planner List</title>
+    <meta name="description" content="Set and achieve your goals with this structured goal planner template. Define deadlines, milestones, and your 'why'.">
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://inputplannerlist.netlify.app/goal-planner">
     <style>
         body { background-color: #f9fafb; }
-        /* Dashboard Structure Styles */
-        .planner-container { 
-            max-width: 800px; /* Single column, so narrower is better */
-            margin: 2rem auto; 
-            padding: 2.5rem; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 16px; 
-            background: #fff; 
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            animation: fadeInUp 0.5s ease-out;
-        }
-        .planner-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-        }
+        .planner-container { max-width: 800px; margin: 2rem auto; padding: 2.5rem; border: 1px solid #e2e8f0; border-radius: 16px; background: #fff; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); animation: fadeInUp 0.5s ease-out; }
+        .planner-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1rem; }
+        .planner-title { font-size: 2rem; color: #1e293b; font-weight: 700; margin-bottom: 0.5rem; }
         
-        .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .goal-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .goal-label { font-weight: 700; color: #64748b; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .goal-input { width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 1.2rem; background: #fff; }
         
-        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; margin: 0; }
+        .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .input-area { width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
         
-        .planner-section { margin-bottom: 2rem; }
-        .planner-section h3 { color: #334155; margin-bottom: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem; font-size: 1.2rem; font-weight: 600; }
+        .checklist-item { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .checkbox-circle { width: 24px; height: 24px; border: 2px solid #cbd5e1; border-radius: 50%; margin-right: 10px; }
+        .line-input { flex: 1; border: none; border-bottom: 1px solid #e2e8f0; padding: 5px; outline: none; }
         
-        .template-list { list-style: none; padding: 0; margin: 0; }
-        .template-item { display: flex; align-items: center; margin-bottom: 0.75rem; }
-
-        /* Custom Checkbox */
-        .template-checkbox { 
-            appearance: none; width: 1.5rem; height: 1.5rem; margin-right: 1rem; 
-            border: 2px solid #cbd5e1; border-radius: 6px; cursor: pointer; position: relative;
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #fff;
-        }
-        .template-checkbox:checked { background-color: #10b981; border-color: #10b981; transform: scale(1.1); }
-        .template-checkbox:checked::after { content: '✓'; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1rem; font-weight: 800; }
-        .template-checkbox:hover { border-color: #6366f1; }
-
-        /* Enhanced Inputs */
-        .template-input { flex: 1; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; background: #f8fafc; transition: all 0.3s ease; }
-        .template-input:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); transform: translateX(5px); }
+        .print-btn { display: block; width: 250px; margin: 2rem auto; padding: 1rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
+        .print-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
         
-        .large-input { font-size: 1.2rem; padding: 0.8rem; font-weight: 600; color: #1e293b; }
-        .notes-area { width: 100%; height: 100px; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; resize: vertical; background: #f8fafc; transition: all 0.3s ease; }
-        .notes-area:focus { background: #fff; border-color: #818cf8; outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
-        
-        /* Colorful Button */
-        .print-btn { display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; text-align: center; transition: all 0.3s ease; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
-        .print-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
-        
-        /* Nav Links */
-        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.8s; }
-        .planner-nav-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; transition: all 0.2s ease; }
-        .planner-nav-links a:hover { color: #fff; background: #6366f1; transform: translateY(-2px); }
-        .planner-nav-links strong { display: block; width: 100%; text-align: center; margin-bottom: 0.5rem; color: #1e293b; }
-        
-        /* New Styles for Ultimate Goal Smasher */
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 1rem; }
-        .checkbox-label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: #334155; transition: color 0.2s; }
-        .checkbox-label:hover { color: #6366f1; }
-        .label-bold { display: block; font-weight: 700; color: #475569; margin-bottom: 0.25rem; font-size: 0.9rem; }
-
-        /* Animated Progress Bar */
-        .progress-container { background: #f1f5f9; border-radius: 12px; padding: 4px; border: 1px solid #e2e8f0; margin-top: 0.5rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
-        .progress-bar { 
-            height: 24px; 
-            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); 
-            background-size: 200% 200%;
-            border-radius: 9px; 
-            width: 0%; 
-            text-align: center; 
-            color: white; 
-            font-size: 0.8rem; 
-            line-height: 24px; 
-            font-weight: bold; 
-            box-shadow: 0 4px 6px rgba(139, 92, 246, 0.3);
-            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation: gradientShift 3s ease infinite;
-        }
-
-        /* Keyframes */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        /* Confetti Elements */
-        .confetti { position: fixed; width: 10px; height: 10px; z-index: 1000; pointer-events: none; }
+        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; }
+        .planner-nav-links a { color: #64748b; text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; }
+        .planner-nav-links a:hover { background: #6366f1; color: white; transform: translateY(-2px); }
 
         @media print {
+            body { background: white; }
             .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links { display: none; }
-            .planner-container { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
-            .template-input, .notes-area { border: 1px solid #eee; background: transparent; }
-            .progress-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .template-checkbox { display: none; }
+            .planner-container { box-shadow: none; border: none; padding: 0; }
+            .goal-box { border: 1px solid #000; }
         }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="logo"><h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1></div>
-                <!-- <div class="nav-menu"><a href="/" class="btn btn-primary">Open App</a></div> -->
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
+    <header><nav class="navbar"><div class="navbar-container"><div class="logo"><h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1></div></div></nav></header>
     <main>
         <section class="hero-section text-center" style="padding: 3rem 1rem 1rem;">
             <h1>Free Goal Planner Template</h1>
-            <p class="hero-subtitle">Define clear objectives and break them down into manageable steps.</p>
+            <p class="hero-subtitle">Turn your dreams into actionable plans.</p>
         </section>
 
         <section class="content-section">
             <div class="planner-container">
                 <div class="planner-header">
-                    <h2 class="planner-title">★ THE ULTIMATE GOAL SMASHER ★</h2>
+                    <h2 class="planner-title">Goal Worksheet</h2>
+                    <p style="color: #64748b;">"A goal without a plan is just a wish."</p>
                 </div>
 
-                <!-- All sections will now be stacked vertically -->
-                <div class="planner-section">
-                    <h3>➤ MISSION BRIEF (The Goal)</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <label class="label-bold">Operation Name:</label>
-                        <input type="text" class="template-input large-input" placeholder="e.g. Launch Portfolio Website">
+                <div class="goal-box">
+                    <label class="goal-label">MY MAIN GOAL</label>
+                    <input type="text" class="goal-input" placeholder="What do you want to achieve?">
+                </div>
+
+                <div class="section-grid">
+                    <div>
+                        <label class="goal-label" style="color:#64748b;">DEADLINE</label>
+                        <input type="text" class="input-area" placeholder="Target Date">
                     </div>
                     <div>
-                        <label class="label-bold">Mission Description:</label>
-                        <textarea class="notes-area" style="height: 60px;" placeholder="Describe your objective clearly..."></textarea>
+                        <label class="goal-label" style="color:#64748b;">REWARD</label>
+                        <input type="text" class="input-area" placeholder="How will you celebrate?">
                     </div>
                 </div>
 
-                <div class="planner-section">
-                    <h3>⚡ THE "WHY" (Motivation)</h3>
-                    <textarea class="notes-area" style="height: 80px;" placeholder="Fuel for the journey..."></textarea>
+                <div style="margin-bottom: 2rem;">
+                    <label class="goal-label" style="color:#64748b;">MY "WHY" (MOTIVATION)</label>
+                    <textarea class="input-area" style="height: 80px;" placeholder="Why is this important to you?"></textarea>
                 </div>
 
-                <div class="planner-section">
-                    <h3>❖ THE ARENA (Category)</h3>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" class="template-checkbox"> ♥ Health & Vitality</label>
-                        <label class="checkbox-label"><input type="checkbox" class="template-checkbox"> ⚒ Career & Empire</label>
-                        <label class="checkbox-label"><input type="checkbox" class="template-checkbox"> $ Wealth & Treasure</label>
-                        <label class="checkbox-label"><input type="checkbox" class="template-checkbox"> ✦ Personal Growth</label>
-                        <label class="checkbox-label"><input type="checkbox" class="template-checkbox"> ∞ Relationships</label>
-                    </div>
+                <div style="margin-bottom: 2rem;">
+                    <label class="goal-label" style="color:#64748b;">ACTION PLAN / MILESTONES</label>
+                    <div class="checklist-item"><div class="checkbox-circle"></div><input type="text" class="line-input" placeholder="Step 1"></div>
+                    <div class="checklist-item"><div class="checkbox-circle"></div><input type="text" class="line-input" placeholder="Step 2"></div>
+                    <div class="checklist-item"><div class="checkbox-circle"></div><input type="text" class="line-input" placeholder="Step 3"></div>
+                    <div class="checklist-item"><div class="checkbox-circle"></div><input type="text" class="line-input" placeholder="Step 4"></div>
+                    <div class="checklist-item"><div class="checkbox-circle"></div><input type="text" class="line-input" placeholder="Step 5"></div>
                 </div>
 
-                <div class="planner-section">
-                    <h3>▲ PRIORITY LEVEL</h3>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="radio" name="priority" class="template-checkbox"> ▲ HIGH</label>
-                        <label class="checkbox-label"><input type="radio" name="priority" class="template-checkbox"> ■ MEDIUM</label>
-                        <label class="checkbox-label"><input type="radio" name="priority" class="template-checkbox"> ▼ LOW</label>
-                    </div>
-                </div>
-
-                <div class="planner-section">
-                    <h3>◷ TIME COORDINATES</h3>
-                    <div style="display: flex; gap: 1rem; align-items: center;">
-                        <div style="flex: 1;">
-                            <label class="label-bold">Start:</label>
-                            <input type="date" class="template-input" style="width: 100%;">
-                        </div>
-                        <div style="flex: 1;">
-                            <label class="label-bold">Deadline:</label>
-                            <input type="date" class="template-input" style="width: 100%;">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="planner-section">
-                    <h3>⚔ BATTLE PLAN (Milestones)</h3>
-                    <ul class="template-list" id="milestone-list">
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Phase 1 Task..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Phase 2 Task..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Phase 3 Task..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Phase 4 Task..."></li>
-                        <li class="template-item"><input type="checkbox" class="template-checkbox"><input type="text" class="template-input" placeholder="Phase 5 Task..."></li>
-                    </ul>
-                </div>
-
-                <div class="planner-section">
-                    <h3>▓ PROGRESS METER</h3>
-                    <div class="progress-container">
-                        <div id="progress-bar" class="progress-bar">0% GET STARTED!</div>
-                    </div>
-                </div>
-
-                <div class="planner-section">
-                    <h3>⚠ OBSTACLES & COUNTER-MOVES</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <label class="label-bold">The Enemy (Obstacle)</label>
-                        <input type="text" class="template-input" placeholder="Obstacle 1...">
-                    </div>
-                    <div>
-                        <label class="label-bold">The Counter-Move (Solution)</label>
-                        <input type="text" class="template-input" placeholder="Solution 1...">
-                    </div>
-                </div>
-
-                <div class="planner-section">
-                    <h3>🛠 ARMORY (Resources)</h3>
-                    <textarea class="notes-area" placeholder="Tools & Support needed..."></textarea>
-                </div>
-
-                <div class="planner-section">
-                    <h3>★ VICTORY LOOT (Reward)</h3>
-                    <textarea class="notes-area" placeholder="Reward upon success..."></textarea>
+                <div style="margin-bottom: 2rem;">
+                    <label class="goal-label" style="color:#64748b;">POTENTIAL OBSTACLES & SOLUTIONS</label>
+                    <textarea class="input-area" style="height: 80px;" placeholder="What might stop you and how will you overcome it?"></textarea>
                 </div>
 
                 <button onclick="window.print()" class="print-btn">Print Goal Planner</button>
             </div>
 
-            <!-- Nav Links -->
+            <section class="highlight-section">
+                <h3>Why Use a Goal Planner?</h3>
+                <p>
+                    A goal without a plan is just a wish. This planner helps you break down your ambitions into actionable steps, define your motivation, and set clear deadlines. Connect your goals to daily tasks in the <strong>Input Planner List Dashboard</strong> to make consistent progress.
+                </p>
+            </section>
+    
+            <section class="content-section text-center">
+                <h3>Ready to Achieve Your Dreams?</h3>
+                <p style="margin-bottom: 2rem;">Turn your ambitions into reality by integrating this planner with the Input Planner List task management app!</p>
+                <a href="/" class="btn btn-primary btn-large">Try Input Planner List Now</a>
+            </section>
+
             <div class="planner-nav-links">
                 <strong>Explore Other Free Planner Templates:</strong>
                 <a href="/daily-planner">Daily Planner</a>
@@ -235,67 +118,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="page-footer">
-        <p>&copy; 2026 Input Planner List. All rights reserved.</p>
-        <p><a href="/">Home</a> | <a href="/daily-planner">Daily Planner</a> | <a href="/ipl">About</a></p>
-    </footer>
-
-    <!-- Script -->
-    <script>
-        // Same script as before
-        document.addEventListener('DOMContentLoaded', () => {
-            const milestoneList = document.getElementById('milestone-list');
-            if (!milestoneList) return;
-
-            const checkboxes = milestoneList.querySelectorAll('.template-checkbox');
-            const progressBar = document.getElementById('progress-bar');
-
-            function updateProgress() {
-                const totalCheckboxes = checkboxes.length;
-                if (totalCheckboxes === 0) return;
-
-                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
-                const percentage = Math.round((checkedCount / totalCheckboxes) * 100);
-
-                progressBar.style.width = percentage + '%';
-
-                if (percentage === 100) {
-                    progressBar.textContent = 'GOAL COMPLETE! ★';
-                    progressBar.style.background = "linear-gradient(90deg, #10b981 0%, #34d399 100%)";
-                    fireConfetti();
-                } else {
-                    progressBar.textContent = percentage + '% LOADING...';
-                    progressBar.style.background = "linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)";
-                }
-            }
-
-            function fireConfetti() {
-                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-                for (let i = 0; i < 100; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.classList.add('confetti');
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = -10 + 'px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    document.body.appendChild(confetti);
-                    const animationDuration = Math.random() * 3 + 2;
-                    confetti.animate([
-                        { transform: `translateY(0) rotate(0)`, opacity: 1 },
-                        { transform: `translateY(100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
-                    ], {
-                        duration: animationDuration * 1000,
-                        easing: 'linear',
-                        fill: 'forwards'
-                    }).onfinish = () => confetti.remove();
-                }
-            }
-
-            checkboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-            updateProgress();
-        });
-    </script>
+    <footer class="page-footer"><p>&copy; 2026 Input Planner List.</p></footer>
 </body>
 </html>

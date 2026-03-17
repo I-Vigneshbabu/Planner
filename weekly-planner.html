@@ -3,129 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Weekly Planner Template - Plan Your Week | IPL</title>
-    <meta name="description" content="Get organized with our free weekly planner template. Plan your entire week, set weekly goals, and track habits. Download or print for free.">
+    <title>Free Weekly Planner Template - Printable Week Schedule | Input Planner List</title>
+    <meta name="description" content="Download free weekly planner template. Organize your entire week with daily sections, top priorities, and notes. Perfect for productivity.">
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://inputplannerlist.netlify.app/weekly-planner">
     <style>
-        /* Reusing styles from daily-planner */
         body { background-color: #f9fafb; }
         .planner-container { 
-            max-width: 1100px; margin: 2rem auto; padding: 2.5rem; border: 1px solid #e2e8f0; 
-            border-radius: 16px; background: #fff; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            max-width: 1000px; /* Wider for weekly view */
+            margin: 2rem auto; 
+            padding: 2.5rem; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 16px; 
+            background: #fff; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
             animation: fadeInUp 0.5s ease-out;
         }
         .planner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1rem; }
-        .planner-title { font-size: 1.5rem; color: #1e293b; font-weight: 700; margin: 0; }
+        .planner-title { font-size: 1.8rem; color: #1e293b; font-weight: 700; margin: 0; }
         .planner-week { font-size: 1.1rem; color: #64748b; }
-        .planner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .day-column { background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
-        .day-column:hover { transform: translateY(-5px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-color: #cbd5e1; }
-        .day-column h3 { color: #334155; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1rem; font-weight: 600; }
-        .day-input { width: 100%; padding: 0.6rem; margin-bottom: 0.5rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; transition: all 0.2s ease; }
-        .day-input:focus { outline: none; border-color: #818cf8; background: #fff; }
-        .notes-area { width: 100%; height: 100px; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; resize: vertical; }
+        
+        /* Weekly Grid */
+        .week-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .day-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; }
+        .day-header { font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; }
+        
+        .sidebar-section { margin-top: 1rem; }
+        
+        .template-input { width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; margin-bottom: 0.5rem; font-family: inherit; }
+        .notes-area { width: 100%; height: 100px; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; resize: vertical; background: #f8fafc; }
+        
         .print-btn { 
             display: block; width: 100%; max-width: 250px; margin: 2rem auto 0; padding: 1rem; 
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
-            color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem;
+            color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; 
+            text-align: center; text-decoration: none; font-size: 1.1rem; 
             transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
         .print-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
-        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; animation: fadeInUp 1s ease-out forwards; opacity: 0; animation-delay: 0.8s; }
+
+        .planner-nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; }
         .planner-nav-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 20px; background: #f1f5f9; transition: all 0.2s ease; }
         .planner-nav-links a:hover { color: #fff; background: #6366f1; transform: translateY(-2px); }
-        .planner-nav-links strong { display: block; width: 100%; text-align: center; margin-bottom: 0.5rem; color: #1e293b; }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
+        @media (max-width: 768px) { .week-grid { grid-template-columns: 1fr; } }
         @media print {
-            .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links { display: none; }
+            body { background: white; }
+            .navbar, .hero-section, .page-footer, .print-btn, .planner-nav-links, .highlight-section { display: none; }
             .planner-container { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
-            .planner-grid { gap: 1rem; }
-            .day-input { border: none; border-bottom: 1px solid #eee; }
+            .week-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .day-box { break-inside: avoid; border: 1px solid #ccc; }
         }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="logo">
-                    <h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1>
-                </div>
-                <div class="nav-menu">
-                    <!-- <a href="/" class="btn btn-primary">Open App</a> -->
-                </div>
-            </div>
-        </nav>
-    </header>
-
+    <header><nav class="navbar"><div class="navbar-container"><div class="logo"><h1><span class="ipl-letter">I</span>nput <span class="ipl-letter">P</span>lanner <span class="ipl-letter">L</span>ist</h1></div></div></nav></header>
     <main>
         <section class="hero-section text-center" style="padding: 3rem 1rem 1rem;">
             <h1>Free Weekly Planner Template</h1>
-            <p class="hero-subtitle">Visualise your week, schedule appointments, and balance your workload efficiently.</p>
+            <p class="hero-subtitle">Plan your entire week at a glance.</p>
         </section>
 
         <section class="content-section">
             <div class="planner-container">
                 <div class="planner-header">
-                    <h2 class="planner-title">Weekly Overview</h2>
+                    <h2 class="planner-title">Weekly Plan</h2>
                     <div class="planner-week">
-                        Week of: <input type="text" placeholder="Date..." style="border:none; border-bottom:1px solid #94a3b8; width: 120px;">
+                        Week of: <input type="text" placeholder="Month Day, Year" style="border:none; border-bottom:1px solid #94a3b8; width: 150px; font-family:inherit; color:#64748b;">
                     </div>
                 </div>
 
-                <div class="planner-grid">
-                    <!-- Monday -->
-                    <div class="day-column">
-                        <h3>Monday</h3>
-                        <input type="text" class="day-input" placeholder="Task 1">
-                        <input type="text" class="day-input" placeholder="Task 2">
-                        <input type="text" class="day-input" placeholder="Task 3">
+                <div class="week-grid">
+                    <!-- Days -->
+                    <div class="day-box">
+                        <div class="day-header">Monday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
                     </div>
-                    <!-- Tuesday -->
-                    <div class="day-column">
-                        <h3>Tuesday</h3>
-                        <input type="text" class="day-input" placeholder="Task 1">
-                        <input type="text" class="day-input" placeholder="Task 2">
-                        <input type="text" class="day-input" placeholder="Task 3">
+                    <div class="day-box">
+                        <div class="day-header">Tuesday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
                     </div>
-                    <!-- Wednesday -->
-                    <div class="day-column">
-                        <h3>Wednesday</h3>
-                        <input type="text" class="day-input" placeholder="Task 1">
-                        <input type="text" class="day-input" placeholder="Task 2">
-                        <input type="text" class="day-input" placeholder="Task 3">
+                    <div class="day-box">
+                        <div class="day-header">Wednesday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
                     </div>
-                    <!-- Thursday -->
-                    <div class="day-column">
-                        <h3>Thursday</h3>
-                        <input type="text" class="day-input" placeholder="Task 1">
-                        <input type="text" class="day-input" placeholder="Task 2">
-                        <input type="text" class="day-input" placeholder="Task 3">
+                    <div class="day-box">
+                        <div class="day-header">Thursday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
                     </div>
-                    <!-- Friday -->
-                    <div class="day-column">
-                        <h3>Friday</h3>
-                        <input type="text" class="day-input" placeholder="Task 1">
-                        <input type="text" class="day-input" placeholder="Task 2">
-                        <input type="text" class="day-input" placeholder="Task 3">
+                    <div class="day-box">
+                        <div class="day-header">Friday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
                     </div>
-                    <!-- Weekend -->
-                    <div class="day-column">
-                        <h3>Weekend</h3>
-                        <input type="text" class="day-input" placeholder="Saturday">
-                        <input type="text" class="day-input" placeholder="Sunday">
-                        <input type="text" class="day-input" placeholder="Notes">
+                    <div class="day-box">
+                        <div class="day-header">Saturday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
+                    </div>
+                    <div class="day-box">
+                        <div class="day-header">Sunday</div>
+                        <input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•"><input type="text" class="template-input" placeholder="•">
+                    </div>
+                    
+                    <!-- Weekly Goals & Notes -->
+                    <div class="day-box" style="grid-column: span 1; background: #f0f9ff; border-color: #bae6fd;">
+                        <div class="day-header" style="color: #0284c7;">Weekly Top Goals</div>
+                        <input type="text" class="template-input" placeholder="1."><input type="text" class="template-input" placeholder="2."><input type="text" class="template-input" placeholder="3.">
+                    </div>
+                    <div class="day-box" style="grid-column: span 1;">
+                         <div class="day-header">Notes</div>
+                         <textarea class="notes-area" style="height: 110px; border:none; background:transparent;" placeholder="Reminders..."></textarea>
                     </div>
                 </div>
 
                 <button onclick="window.print()" class="print-btn">Print Weekly Planner</button>
             </div>
+
+            <section class="highlight-section">
+                <h3>Why Use a Weekly Planner?</h3>
+                <p>
+                    A weekly planner gives you a bird's-eye view of your upcoming commitments. With Input Planner List's <strong>Weekly Planner Dashboard</strong>, you can balance your workload, set achievable goals for the week, and ensure you never miss an important deadline.
+                </p>
+            </section>
+    
+            <section class="content-section text-center">
+                <h3>Ready to Master Your Week?</h3>
+                <p style="margin-bottom: 2rem;">Use the Input Planner List app to integrate your weekly plans with daily tasks and long-term goals!</p>
+                <a href="/" class="btn btn-primary btn-large">Try Input Planner List Now</a>
+            </section>
 
             <div class="planner-nav-links">
                 <strong>Explore Other Free Planner Templates:</strong>
@@ -139,10 +144,6 @@
             </div>
         </section>
     </main>
-    
-    <footer class="page-footer">
-        <p>&copy; 2026 Input Planner List. All rights reserved.</p>
-        <p><a href="/">Home</a> | <a href="/daily-planner">Daily Planner</a> | <a href="/ipl">About</a></p>
-    </footer>
+    <footer class="page-footer"><p>&copy; 2026 Input Planner List.</p></footer>
 </body>
 </html>

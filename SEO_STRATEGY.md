@@ -1,6 +1,6 @@
-# 🎯 IPL - Input Planner List - SEO Strategy Guide
+# 🎯 Input Planner List - SEO Strategy Guide
 
-## Goal: Rank #1 for "IPL" Search on Google
+## Goal: Rank #1 for "Input Planner List" Search on Google
 
 Your website is now optimized for maximum search engine visibility. Here's what has been implemented:
 
@@ -25,9 +25,9 @@ And  the code for this website is
 
 ### 2. **Meta Tags (Critical for Google)**
 ```html
-<title>IPL - Input Planner List: Productivity & Task Management</title>
-<meta name="description" content="IPL - Input Planner List: Best task management app...">
-<meta name="keywords" content="IPL, input planner list, task management...">
+<title>Input Planner List: Productivity & Task Management</title>
+<meta name="description" content="Input Planner List: Best task management app...">
+<meta name="keywords" content="Input Planner List, task management...">
 ```
 ✅ **Optimized** - Focus on "IPL" keyword
 

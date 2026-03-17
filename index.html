@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IPL - Input Planner List: Best task management app with habit tracking, Pomodoro timer, and productivity analytics. Organize your day efficiently with IPL planner.">
-    <meta name="keywords" content="IPL, input planner list, task management, habit tracker, productivity planner, Pomodoro timer, daily planner, planner app, task organizer">
+    <meta name="description" content="Input Planner List: Best task management app with habit tracking, Pomodoro timer, and productivity analytics. Organize your day efficiently with Input Planner List planner.">
+    <meta name="keywords" content="Input Planner List, task management, habit tracker, productivity planner, Pomodoro timer, daily planner, planner app, task organizer">
     <meta name="author" content="IPL Pro">
     <meta name="theme-color" content="#6366f1">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="google-site-verification" content="RfOsSPGJI323BNWsmecKwHk7lK8nmOv1Egl8_iDa2I8" />
     <!-- Open Graph Tags for Social Media -->
-    <meta property="og:title" content="IPL - Input Planner List: Productivity & Task Management">
-    <meta property="og:description" content="Manage tasks, track habits, and boost productivity with IPL - Input Planner List. Free daily planner with Pomodoro timer and analytics.">
+    <meta property="og:title" content="Input Planner List: Productivity & Task Management">
+    <meta property="og:description" content="Manage tasks, track habits, and boost productivity with Input Planner List. Free daily planner with Pomodoro timer and analytics.">
     <meta property="og:image" content="https://via.placeholder.com/1200x630?text=IPL+Input+Planner+List">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ipl-planner.example.com">
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IPL - Input Planner List">
-    <meta name="twitter:description" content="Best task management & productivity planner - IPL Input Planner List">
+    <meta name="twitter:title" content="Input Planner List">
+    <meta name="twitter:description" content="Best task management & productivity planner - Input Planner List">
     <meta name="twitter:image" content="https://via.placeholder.com/1200x630?text=IPL+Planner">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "IPL - Input Planner List",
+        "name": "Input Planner List",
         "alternateName": "Input Planner List",
-        "description": "Input Planner List (IPL) is a comprehensive task management and productivity planner with habit tracking, Pomodoro timer, and advanced analytics. Best planner app for organizing tasks and boosting productivity.",
+        "description": "Input Planner List is a comprehensive task management and productivity planner with habit tracking, Pomodoro timer, and advanced analytics. Best planner app for organizing tasks and boosting productivity.",
         "url": "https://ipl-planner.example.com",
         "applicationCategory": "ProductivityApplication",
         "offers": {
@@ -36,7 +36,7 @@
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock"
         },
-        "keywords": "IPL, Input Planner List, task management, habit tracker, productivity planner, Pomodoro timer, daily planner",
+        "keywords": "Input Planner List, task management, habit tracker, productivity planner, Pomodoro timer, daily planner",
         "author": {
             "@type": "Organization",
             "name": "IPL Pro"
@@ -44,10 +44,15 @@
         "operatingSystem": "Web Browser"
     }
     </script>
-    <title>IPL - Input Planner List: Task Management & Productivity App</title>
+    <title>Input Planner List: Task Management & Productivity App</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1;stop-opacity:1'/><stop offset='50%' style='stop-color:%233b82f6;stop-opacity:1'/><stop offset='100%' style='stop-color:%2306b6d4;stop-opacity:1'/></linearGradient><filter id='glow'><feGaussianBlur stdDeviation='2' result='coloredBlur'/><feMerge><feMergeNode in='coloredBlur'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><circle cx='50' cy='50' r='48' fill='none' stroke='url(%23g)' stroke-width='2' opacity='0.3' filter='url(%23glow)'/><circle cx='50' cy='50' r='42' fill='url(%23g)' opacity='0.12'/><circle cx='50' cy='50' r='40' fill='white' opacity='0.95'/><rect x='20' y='22' width='60' height='55' rx='3' fill='none' stroke='url(%23g)' stroke-width='2'/><line x1='20' y1='32' x2='80' y2='32' stroke='url(%23g)' stroke-width='2'/><circle cx='28' cy='28' r='2.5' fill='url(%23g)'/><circle cx='72' cy='28' r='2.5' fill='url(%23g)'/><path d='M 35 50 L 48 62 L 68 42' stroke='url(%23g)' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round' filter='url(%23glow)'/></svg>">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div id="app" class="app-container">
@@ -179,16 +184,70 @@
 
             <!-- Weekly View -->
             <section id="weekly" class="view">
-                <div class="weekly-header">
-                    <h2>Weekly Planner</h2>
-                    <div class="week-nav">
-                        <button class="btn btn-sm" id="prevWeek">← Prev</button>
-                        <span id="weekDisplay">Week of Mar 10, 2026</span>
-                        <button class="btn btn-sm" id="nextWeek">Next →</button>
+                <div class="weekly-planner-container">
+                    <header class="weekly-planner-header">
+                        <h1>Weekly Planner</h1>
+                        <p class="subtitle">Plan your week with clarity and focus</p>
+                        <div class="week-controls">
+                            <button class="icon-btn" id="prevWeek"><i class="fa-solid fa-chevron-left"></i></button>
+                            <h2 id="weekDisplay">March 10 - March 16, 2026</h2>
+                            <button class="icon-btn" id="nextWeek"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="divider"></div>
+                    </header>
+
+                    <div class="planner-layout">
+                        <!-- Left: Day Grid -->
+                        <div class="planner-days-grid" id="weeklyDaysGrid">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <!-- Right: Sidebar Tools -->
+                        <div class="planner-sidebar">
+                            <!-- Goals Widget -->
+                            <div class="widget-card goals-widget">
+                                <h3><i class="fa-solid fa-bullseye"></i> Weekly Goals</h3>
+                                <ul class="goals-list" id="weeklyGoalsList"></ul>
+                                <input type="text" class="widget-input" id="newGoalInput" placeholder="+ Add goal">
+                            </div>
+
+                            <!-- Priorities Widget -->
+                            <div class="widget-card priorities-widget">
+                                <h3><i class="fa-solid fa-star"></i> Top Priorities</h3>
+                                <ol class="priorities-list" id="weeklyPrioritiesList"></ol>
+                                <input type="text" class="widget-input" id="newPriorityInput" placeholder="+ Add priority">
+                            </div>
+
+                            <!-- Mood Widget -->
+                            <div class="widget-card mood-widget">
+                                <h3><i class="fa-solid fa-face-smile"></i> Daily Mood</h3>
+                                <div class="mood-selector" id="moodSelector">
+                                    <span data-mood="great">🤩</span>
+                                    <span data-mood="good">🙂</span>
+                                    <span data-mood="okay">😐</span>
+                                    <span data-mood="tired">😴</span>
+                                    <span data-mood="bad">😖</span>
+                                </div>
+                                <p id="currentMoodDisplay" class="mood-display-text"></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div id="weeklyGrid" class="weekly-grid">
-                    <!-- Generated dynamically -->
+
+                    <!-- Bottom: Notes & Reflection -->
+                    <div class="planner-footer-section">
+                        <div class="notebook-area">
+                            <h3><i class="fa-solid fa-pen-fancy"></i> Weekly Notes & Reflection</h3>
+                            <textarea id="weeklyNotes" placeholder="What went well this week? What can be improved? Write your thoughts..."></textarea>
+                        </div>
+                        <div class="planner-tools">
+                            <div class="progress-section">
+                                <label>Weekly Progress</label>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="weeklyProgressBar"></div></div>
+                                <span id="weeklyProgressText">0% Completed</span>
+                            </div>
+                            <button id="resetWeekBtn" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -348,7 +407,7 @@
                             <h3>About</h3>
                             <p>Input Planner List v1.0</p>
                             <p>A comprehensive task management and productivity tool.</p>
-                            <p><a href="/ipl" target="_blank" rel="noopener">What is Input Planner List?</a></p>
+                            <p><a href="/about" target="_blank" rel="noopener">What is Input Planner List?</a></p>
                             <p><small>© 2026 Input Planner List. All rights reserved.</small></p>
                         </div>
                     </div>

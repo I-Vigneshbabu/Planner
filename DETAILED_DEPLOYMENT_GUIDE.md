@@ -1,4 +1,4 @@
-# 🎯 COMPLETE DETAILED STEP-BY-STEP: Deploy IPL App to Netlify
+# 🎯 COMPLETE DETAILED STEP-BY-STEP: Deploy Input Planner List App to Netlify
 
 ## PHASE 1: GitHub Setup (2 minutes)
 
@@ -1156,4 +1156,3 @@ git push origin main
 ---
 
 **🎉 You're Live! Welcome to the Internet!**
-

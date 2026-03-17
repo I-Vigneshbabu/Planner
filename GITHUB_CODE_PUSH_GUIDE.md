@@ -671,4 +671,3 @@ Your code is now:
 ---
 
 **Next Step:** Follow COMPLETE_MASTER_GUIDE.md **PART 2** to deploy to Netlify!
-
